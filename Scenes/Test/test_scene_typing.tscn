@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dd4c35hpg5x2g"]
+
+[ext_resource type="Script" uid="uid://dxau8ftg4rbtj" path="res://Scripts/Globals/typing.gd" id="1_36060"]
+[ext_resource type="Script" uid="uid://xm0x8kja2tqo" path="res://Scripts/Globals/Enemy.gd" id="2_mp878"]
+[ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="2_y28sa"]
+
+[node name="TestScene_Typing" type="Node2D" unique_id=452856550]
+
+[node name="Main" type="Node2D" parent="." unique_id=1882548491]
+script = ExtResource("1_36060")
+
+[node name="Node2D" type="Node2D" parent="Main" unique_id=655573891]
+script = ExtResource("2_mp878")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Node2D" unique_id=245201136]
+offset_left = 245.0
+offset_top = 288.0
+offset_right = 715.0
+offset_bottom = 361.0
+theme_override_fonts/normal_font = ExtResource("2_y28sa")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "[center]TYPETHIS[/center]"
+scroll_active = false
+vertical_alignment = 1
