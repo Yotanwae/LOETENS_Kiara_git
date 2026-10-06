@@ -1,0 +1,36 @@
+[gd_resource type="TileSet" format=3 uid="uid://pnb8khtfhf34"]
+
+[ext_resource type="Texture2D" uid="uid://durmji7yaodic" path="res://Assets/Dungeon/Water.png" id="1_hqecg"]
+[ext_resource type="Texture2D" uid="uid://dw4tdwjfyc4ec" path="res://Assets/Dungeon/Set 1.1.png" id="2_udadp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xl77w"]
+texture = ExtResource("1_hqecg")
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/animation_columns = 8
+0:0/animation_frame_0/duration = 0.3
+0:0/animation_frame_1/duration = 0.3
+0:0/animation_frame_2/duration = 0.3
+0:0/animation_frame_3/duration = 0.3
+0:0/animation_frame_4/duration = 0.3
+0:0/animation_frame_5/duration = 0.3
+0:0/animation_frame_6/duration = 0.3
+0:0/animation_frame_7/duration = 0.3
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b56md"]
+texture = ExtResource("2_udadp")
+0:1/0 = 0
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:0/0 = 0
+6:4/0 = 0
+5:0/0 = 0
+5:3/0 = 0
+5:1/0 = 0
+5:5/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_xl77w")
+sources/1 = SubResource("TileSetAtlasSource_b56md")
