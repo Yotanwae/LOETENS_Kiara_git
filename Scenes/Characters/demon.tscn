@@ -149,7 +149,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"hurt",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -175,11 +175,9 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Demon" type="Node2D" unique_id=1440972712]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1376472623]
+[node name="Demon" type="AnimatedSprite2D" unique_id=1376472623]
 sprite_frames = SubResource("SpriteFrames_benfh")
-animation = &"death"
+animation = &"hurt"
 autoplay = "idle"
 frame = 3
 frame_progress = 1.0
