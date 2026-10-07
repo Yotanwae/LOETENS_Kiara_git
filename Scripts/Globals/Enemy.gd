@@ -18,6 +18,8 @@ var is_attack_ready: bool = false
 @onready var prompt_text = prompt.get_parsed_text() # to get the text without the BBcode
 ###############################
 
+@onready var cooldown_timer: Timer = $CooldownTimer
+@onready var attack_cooldown_bar: ProgressBar = $AttackCooldownBar
 @onready var animated_sprite = $AnimatedSprite2D
 
 signal inflict_damage
@@ -25,6 +27,11 @@ signal inflict_damage
 
 func _ready() -> void:
 	give_new_prompt()
+	
+	# setup for the progress bar 
+	attack_cooldown_bar.min_value = 0.00
+	attack_cooldown_bar.max_value = cooldown_timer.wait_time
+	attack_cooldown_bar.value = cooldown_timer.wait_time
 
 
 
@@ -75,12 +82,14 @@ func set_bbcode_basics_tags(base_string: String):
 
 ######## Attack system ###################
 func _process(delta: float) -> void:
+	#fill the progress bar with time left
+	attack_cooldown_bar.value = cooldown_timer.wait_time - cooldown_timer.time_left
 	
 	if is_attack_ready == true:
 		is_attack_ready = false
 		attack()
 		print("attacked")
-		$CooldownTimer.start()
+		
 		
 
 func _on_cooldown_timer_timeout() -> void:
@@ -91,6 +100,7 @@ func _on_cooldown_timer_timeout() -> void:
 func attack():
 	animated_sprite.play("attack")
 	await animated_sprite.animation_finished
+	cooldown_timer.start()
 	inflict_damage.emit()
 	animated_sprite.play("idle")
 ###################################
@@ -100,7 +110,7 @@ func take_damage() -> void:
 	if current_health > 0:
 		current_health -= 1
 		animated_sprite.play("hurt")
-		$CooldownTimer.start() #reset the timer when taking damage
+		cooldown_timer.start() #reset the timer when taking damage
 		await animated_sprite.animation_finished
 		animated_sprite.play("idle")
 		if current_health > 0: 
