@@ -42,7 +42,7 @@ func get_prompt() -> String: # function to be call in another script
 
 
 
-
+# add feedback depending on the current letter, the next letters or the already typed letters
 func set_next_character(next_character_index: int):
 	var green_text = get_bbcode_color_tag(green) + prompt_text.substr(0, next_character_index) + get_bbcode_color_tag_end()
 	var yellow_text = get_bbcode_color_tag(yellow) + "[font_size=37]" + prompt_text.substr(next_character_index, 1) + "[/font_size]" + get_bbcode_color_tag_end()
@@ -53,7 +53,7 @@ func set_next_character(next_character_index: int):
 	
 	prompt.parse_bbcode(set_bbcode_basics_tags(green_text + yellow_text + red_text))
 
-
+# add effect when there's a wrong input
 func miss_input_shake():
 	prompt.parse_bbcode("[center][font gl=7][shake rate=40 level=70]" + get_bbcode_color_tag(red) + prompt_text + get_bbcode_color_tag_end() +  "[/shake][/font][/center]")
 	
@@ -73,7 +73,7 @@ func set_bbcode_basics_tags(base_string: String):
 
 #############################################################
 
-
+######## Attack system ###################
 func _process(delta: float) -> void:
 	
 	if is_attack_ready == true:
@@ -81,6 +81,7 @@ func _process(delta: float) -> void:
 		attack()
 		print("attacked")
 		$CooldownTimer.start()
+		
 
 func _on_cooldown_timer_timeout() -> void:
 	is_attack_ready = true
@@ -92,13 +93,14 @@ func attack():
 	await animated_sprite.animation_finished
 	inflict_damage.emit()
 	animated_sprite.play("idle")
+###################################
 
-
-
+############ Health system ###################
 func take_damage() -> void:
 	if current_health > 0:
 		current_health -= 1
 		animated_sprite.play("hurt")
+		$CooldownTimer.start() #reset the timer when taking damage
 		await animated_sprite.animation_finished
 		animated_sprite.play("idle")
 		if current_health > 0: 
