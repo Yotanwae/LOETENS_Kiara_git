@@ -23,6 +23,7 @@ var is_attack_ready: bool = false
 @onready var animated_sprite = $AnimatedSprite2D
 
 signal inflict_damage
+signal death
 
 
 func _ready() -> void:
@@ -121,6 +122,8 @@ func take_damage() -> void:
 
 
 	if current_health == 0:
+		attack_cooldown_bar.hide()
 		animated_sprite.play("death")
 		await get_tree().create_timer(1.0).timeout
+		death.emit()
 		queue_free()

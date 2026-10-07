@@ -12,11 +12,16 @@
 [node name="Typing" type="Node2D" parent="." unique_id=1882548491]
 script = ExtResource("1_36060")
 
-[node name="Enemy" parent="Typing" unique_id=1496009578 instance=ExtResource("4_mp878")]
+[node name="Spawner" type="Marker2D" parent="Typing" unique_id=1940777031]
+
+[node name="EnemyContainer" type="Node2D" parent="Typing" unique_id=708849694]
+
+[node name="Enemy" parent="Typing/EnemyContainer" unique_id=1496009578 instance=ExtResource("4_mp878")]
 
 [node name="Knight" parent="." unique_id=1520537148 instance=ExtResource("4_hy3vw")]
 
 [connection signal="succesfully_typed_word" from="Typing" to="Knight" method="_on_typing_succesfully_typed_word"]
-[connection signal="inflict_damage" from="Typing/Enemy" to="Knight" method="_on_enemy_inflict_damage"]
+[connection signal="death" from="Typing/EnemyContainer/Enemy" to="Typing" method="_on_enemy_death"]
+[connection signal="inflict_damage" from="Typing/EnemyContainer/Enemy" to="Knight" method="_on_enemy_inflict_damage"]
 [connection signal="is_dead" from="Knight" to="Typing" method="_on_knight_is_dead"]
-[connection signal="is_dead" from="Knight" to="Typing/Enemy" method="_on_knight_is_dead"]
+[connection signal="is_dead" from="Knight" to="Typing/EnemyContainer/Enemy" method="_on_knight_is_dead"]

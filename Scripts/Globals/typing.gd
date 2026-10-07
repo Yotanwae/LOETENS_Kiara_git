@@ -6,17 +6,21 @@ var current_letter_index := -1
 var is_error_cooldown: bool = false
 var can_type: bool = true
 
-@onready var enemy = $Enemy
+@onready var enemy_container: Node2D = $EnemyContainer
+@onready var spawner: Marker2D = $Spawner
+
+var enemy_scene = preload("res://Scenes/Characters/orc.tscn")
 
 signal succesfully_typed_word
 
 
 func new_active_word(typed_character : String):
-	var current_prompt = enemy.get_prompt()
-	if current_prompt.substr(0, 1) == typed_character: #check if the letter typed is the same as the first letter in the current_prompt
-		active_word = enemy
-		current_letter_index = 1
-		active_word.set_next_character(current_letter_index) # color with bbcode
+	for enemy in enemy_container.get_children():
+		var current_prompt = enemy.get_prompt()
+		if current_prompt.substr(0, 1) == typed_character: #check if the letter typed is the same as the first letter in the current_prompt
+			active_word = enemy
+			current_letter_index = 1
+			active_word.set_next_character(current_letter_index) # color with bbcode
 
 
 
@@ -77,3 +81,8 @@ func _unhandled_input(event: InputEvent) -> void:
 # to prevent the player from typing during his death
 func _on_knight_is_dead() -> void:
 	can_type = false
+
+func _on_enemy_death() -> void:
+	var enemy_instance = enemy_scene.instantiate()
+	enemy_container.add_child(enemy_instance)
+	enemy_instance.global_position = spawner.global_position
