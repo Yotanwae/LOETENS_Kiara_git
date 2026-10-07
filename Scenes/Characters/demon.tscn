@@ -193,6 +193,7 @@ animations = [{
 
 [node name="Enemy" type="Node2D" unique_id=1496009578]
 script = ExtResource("1_2c0cs")
+max_health = 2
 
 [node name="AttackCooldownBar" type="ProgressBar" parent="." unique_id=1220502100]
 offset_left = 769.0
@@ -211,7 +212,7 @@ scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_bic1j")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.55727285
+frame_progress = 0.8641278
 flip_h = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1369352667]

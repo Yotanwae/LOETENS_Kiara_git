@@ -4,6 +4,7 @@ extends Node2D
 var active_word = null
 var current_letter_index := -1
 var is_error_cooldown: bool = false
+var can_type: bool = true
 
 @onready var enemy = $Enemy
 
@@ -22,7 +23,7 @@ func new_active_word(typed_character : String):
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey && event.is_pressed() && ! event.is_echo() && is_error_cooldown == false:
+	if event is InputEventKey && event.is_pressed() && ! event.is_echo() && is_error_cooldown == false && can_type == true:
 		var typed_event = event as InputEventKey
 		
 		#ignore every key that have no caracters, such as( Maj, Ctrl, ....)
@@ -72,9 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				active_word.set_next_character(current_letter_index)
 				
 				
-	
-	
-	
-	
-	
-	
+
+# to prevent the player from typing during his death
+func _on_knight_is_dead() -> void:
+	can_type = false

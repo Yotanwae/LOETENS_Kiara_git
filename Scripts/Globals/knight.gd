@@ -6,6 +6,8 @@ var current_health := max_health
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+signal is_dead
+
 func _ready() -> void:
 	animated_sprite.play("idle")
 	
@@ -25,9 +27,10 @@ func take_damage():
 			death()
 
 func death():
+	is_dead.emit()
 	animated_sprite.play("death")
 	await animated_sprite.animation_finished
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	get_tree().reload_current_scene()
 
 func attack_animation():

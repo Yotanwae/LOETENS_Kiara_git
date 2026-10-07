@@ -18,3 +18,5 @@ script = ExtResource("1_36060")
 
 [connection signal="succesfully_typed_word" from="Typing" to="Knight" method="_on_typing_succesfully_typed_word"]
 [connection signal="inflict_damage" from="Typing/Enemy" to="Knight" method="_on_enemy_inflict_damage"]
+[connection signal="is_dead" from="Knight" to="Typing" method="_on_knight_is_dead"]
+[connection signal="is_dead" from="Knight" to="Typing/Enemy" method="_on_knight_is_dead"]

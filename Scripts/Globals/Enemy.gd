@@ -95,6 +95,9 @@ func _process(delta: float) -> void:
 func _on_cooldown_timer_timeout() -> void:
 	is_attack_ready = true
 
+#to stop the timer when the player died
+func _on_knight_is_dead() -> void:
+	cooldown_timer.paused = true
 
 
 func attack():
