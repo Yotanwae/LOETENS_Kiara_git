@@ -7,6 +7,8 @@ var is_error_cooldown: bool = false
 
 @onready var enemy = $Enemy
 
+signal succesfully_typed_word
+
 
 func new_active_word(typed_character : String):
 	var current_prompt = enemy.get_prompt()
@@ -50,12 +52,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				current_letter_index += 1
 				active_word.set_next_character(current_letter_index) # color with bbcode
 				
+				
+				###### when the word is fully typed#####
 				if current_letter_index == prompt.length(): # check if we are at the end of the word
 					current_letter_index = -1 #reset to the beginning
+					succesfully_typed_word.emit() #signals to emit for playing animation
+					await get_tree().create_timer(0.4).timeout
 					active_word.take_damage() #erase the current enemy ###### temporary as it will just cause damage later on
-					active_word = null
+					active_word = null 
 			
 			
+			##### when miss input #####
 			if key_typed != next_character:
 				print("miss typed")
 				active_word.miss_input_shake()

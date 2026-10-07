@@ -179,12 +179,10 @@ animations = [{
 
 [node name="Enemy" type="Node2D" unique_id=1496009578]
 script = ExtResource("1_2c0cs")
-max_health = 2
-attack_cooldown = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=182535666]
 position = Vector2(812, 248)
-scale = Vector2(3, 3)
+scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_bic1j")
 animation = &"attack"
 autoplay = "idle"
@@ -202,3 +200,10 @@ theme_override_font_sizes/normal_font_size = 33
 bbcode_enabled = true
 scroll_active = false
 vertical_alignment = 1
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1799618238]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

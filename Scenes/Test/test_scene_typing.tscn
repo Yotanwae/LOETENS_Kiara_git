@@ -2,13 +2,19 @@
 
 [ext_resource type="Script" uid="uid://dxau8ftg4rbtj" path="res://Scripts/Globals/typing.gd" id="1_36060"]
 [ext_resource type="PackedScene" uid="uid://drjajedtoppx7" path="res://Scenes/Test/test_scene_tileset.tscn" id="1_y28sa"]
+[ext_resource type="PackedScene" uid="uid://chxictadofo7w" path="res://Scenes/Characters/knight.tscn" id="4_hy3vw"]
 [ext_resource type="PackedScene" uid="uid://chgvp5ah10t3l" path="res://Scenes/Characters/orc.tscn" id="4_mp878"]
 
 [node name="TestScene_Typing" type="Node2D" unique_id=452856550]
 
 [node name="TestSceneTileSet" parent="." unique_id=1276844642 instance=ExtResource("1_y28sa")]
 
-[node name="Main" type="Node2D" parent="." unique_id=1882548491]
+[node name="Typing" type="Node2D" parent="." unique_id=1882548491]
 script = ExtResource("1_36060")
 
-[node name="Enemy" parent="Main" unique_id=1496009578 instance=ExtResource("4_mp878")]
+[node name="Enemy" parent="Typing" unique_id=1496009578 instance=ExtResource("4_mp878")]
+
+[node name="Knight" parent="." unique_id=1520537148 instance=ExtResource("4_hy3vw")]
+
+[connection signal="succesfully_typed_word" from="Typing" to="Knight" method="_on_typing_succesfully_typed_word"]
+[connection signal="inflict_damage" from="Typing/Enemy" to="Knight" method="_on_enemy_inflict_damage"]

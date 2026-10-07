@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://chxictadofo7w"]
 
 [ext_resource type="Texture2D" uid="uid://bxkinla8or8pl" path="res://Assets/Characters/Soldier/Soldier with shadows/Soldier_Attack01.png" id="1_7stuo"]
+[ext_resource type="Script" uid="uid://b34p80j0kvmcm" path="res://Scripts/Globals/knight.gd" id="1_e8lxy"]
 [ext_resource type="Texture2D" uid="uid://wvljylam883s" path="res://Assets/Characters/Soldier/Soldier with shadows/Soldier_Death.png" id="2_e8lxy"]
 [ext_resource type="Texture2D" uid="uid://fybpbvc0s3yi" path="res://Assets/Characters/Soldier/Soldier with shadows/Soldier_Hurt.png" id="3_v1ffd"]
 [ext_resource type="Texture2D" uid="uid://djs1sev1k6dud" path="res://Assets/Characters/Soldier/Soldier with shadows/Soldier_Idle.png" id="4_vh0fs"]
@@ -230,9 +231,13 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Knight" type="AnimatedSprite2D" unique_id=771176352]
+[node name="Knight" type="Node2D" unique_id=1520537148]
+script = ExtResource("1_e8lxy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=771176352]
+position = Vector2(147, 255)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_benfh")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
+frame_progress = 0.58946836

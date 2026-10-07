@@ -4,7 +4,7 @@ extends Node2D
 @export var max_health := 3
 var current_health = max_health
 
-@export var attack_cooldown : float = 5.0
+var is_attack_ready: bool = false
 ######################################
 
 ######### Colors for Ui #########
@@ -20,9 +20,13 @@ var current_health = max_health
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+signal inflict_damage
+
 
 func _ready() -> void:
 	give_new_prompt()
+
+
 
 
 #give a new prompt at the beginning
@@ -70,6 +74,25 @@ func set_bbcode_basics_tags(base_string: String):
 #############################################################
 
 
+func _process(delta: float) -> void:
+	
+	if is_attack_ready == true:
+		is_attack_ready = false
+		attack()
+		print("attacked")
+		$CooldownTimer.start()
+
+func _on_cooldown_timer_timeout() -> void:
+	is_attack_ready = true
+
+
+
+func attack():
+	animated_sprite.play("attack")
+	await animated_sprite.animation_finished
+	inflict_damage.emit()
+	animated_sprite.play("idle")
+
 
 
 func take_damage() -> void:
@@ -78,14 +101,10 @@ func take_damage() -> void:
 		animated_sprite.play("hurt")
 		await animated_sprite.animation_finished
 		animated_sprite.play("idle")
-		print("-1hp / current health is " + str(current_health))
-		if current_health >= 1: 
+		if current_health > 0: 
 			give_new_prompt()
-	
-	
-	
-	
-	
+
+
 	if current_health == 0:
 		animated_sprite.play("death")
 		await get_tree().create_timer(1.0).timeout
