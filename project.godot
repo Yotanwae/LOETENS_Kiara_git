@@ -14,6 +14,10 @@ config/name="LOETENS_Kiara_project"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PromptList="*uid://cjp6e0ivj5hql"
+
 [display]
 
 window/size/viewport_width=960

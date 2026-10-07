@@ -31,5 +31,5 @@ vertical_alignment = 1
 [node name="Orc" parent="Main/Node2D" unique_id=182535666 instance=ExtResource("4_mp878")]
 position = Vector2(728, 318)
 scale = Vector2(4, 4)
-frame = 0
-frame_progress = 0.0
+animation = &"idle"
+frame_progress = 0.9063617
