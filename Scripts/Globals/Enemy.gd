@@ -18,7 +18,7 @@ var current_health = max_health
 @onready var prompt_text = prompt.get_parsed_text() # to get the text without the BBcode
 ###############################
 
-@export var animated_sprite : AnimatedSprite2D
+@onready var animated_sprite = $AnimatedSprite2D
 
 
 func _ready() -> void:

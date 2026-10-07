@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://chgvp5ah10t3l"]
 
 [ext_resource type="Texture2D" uid="uid://pids5fpfw57c" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Attack02.png" id="1_e256h"]
+[ext_resource type="Script" uid="uid://xm0x8kja2tqo" path="res://Scripts/Globals/Enemy.gd" id="1_pwg3k"]
 [ext_resource type="Texture2D" uid="uid://d4g4der24nhkf" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Death.png" id="2_pwg3k"]
 [ext_resource type="Texture2D" uid="uid://d1rg51qhhj1di" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Hurt.png" id="3_dm0ex"]
 [ext_resource type="Texture2D" uid="uid://cqndi66hldqla" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Idle.png" id="4_2w66l"]
+[ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="6_dm0ex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rw6wq"]
 atlas = ExtResource("1_e256h")
@@ -168,10 +170,25 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Orc" type="AnimatedSprite2D" unique_id=182535666]
+[node name="Enemy" type="Node2D" unique_id=1496009578]
+script = ExtResource("1_pwg3k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=182535666]
+position = Vector2(812, 248)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_bic1j")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
+frame_progress = 0.02513689
 flip_h = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1369352667]
+offset_left = 231.0
+offset_top = 217.0
+offset_right = 734.0
+offset_bottom = 290.0
+theme_override_fonts/normal_font = ExtResource("6_dm0ex")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+scroll_active = false
+vertical_alignment = 1

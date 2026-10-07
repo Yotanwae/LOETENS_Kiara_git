@@ -5,13 +5,13 @@ var active_word = null
 var current_letter_index := -1
 var is_error_cooldown: bool = false
 
-
+@onready var enemy = $Enemy
 
 
 func new_active_word(typed_character : String):
-	var current_prompt = $Node2D.get_prompt()
+	var current_prompt = enemy.get_prompt()
 	if current_prompt.substr(0, 1) == typed_character: #check if the letter typed is the same as the first letter in the current_prompt
-		active_word = $Node2D
+		active_word = enemy
 		current_letter_index = 1
 		active_word.set_next_character(current_letter_index) # color with bbcode
 
