@@ -9,7 +9,8 @@ var can_type: bool = true
 @onready var enemy_container: Node2D = $EnemyContainer
 @onready var spawner: Marker2D = $Spawner
 
-var enemy_scene = preload("res://Scenes/Characters/orc.tscn")
+var orc_scene = preload("res://Scenes/Characters/orc.tscn")
+var demon_scene = preload("res://Scenes/Characters/demon.tscn")
 
 signal succesfully_typed_word
 
@@ -84,8 +85,16 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_knight_is_dead() -> void:
 	can_type = false
 
+
 func _on_enemy_death() -> void:
-	print("on_enemy_death is activated")
+	var randomize = randi_range(0,1)
+	var enemy_scene = orc_scene
+	
+	if randomize == 0:
+		enemy_scene = orc_scene
+	if randomize == 1:
+		enemy_scene = demon_scene
+	
 	var enemy_instance = enemy_scene.instantiate()
 	enemy_instance.death.connect(_on_enemy_death)
 	enemy_container.add_child(enemy_instance)
