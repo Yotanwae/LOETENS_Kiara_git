@@ -62,6 +62,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				if current_letter_index == prompt.length(): # check if we are at the end of the word
 					current_letter_index = -1 #reset to the beginning
 					succesfully_typed_word.emit() #signals to emit for playing animation
+					
+					
 					await get_tree().create_timer(0.4).timeout
 					active_word.take_damage() #erase the current enemy ###### temporary as it will just cause damage later on
 					active_word = null 
@@ -83,6 +85,8 @@ func _on_knight_is_dead() -> void:
 	can_type = false
 
 func _on_enemy_death() -> void:
+	print("on_enemy_death is activated")
 	var enemy_instance = enemy_scene.instantiate()
+	enemy_instance.death.connect(_on_enemy_death)
 	enemy_container.add_child(enemy_instance)
 	enemy_instance.global_position = spawner.global_position

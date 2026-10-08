@@ -1,7 +1,7 @@
 extends Node2D
 
 ######### Enemy Statistics ###########
-@export var max_health := 3
+@export var max_health : int
 var current_health = max_health
 
 var is_attack_ready: bool = false
@@ -122,8 +122,10 @@ func take_damage() -> void:
 
 
 	if current_health == 0:
+		print("current health is " + str(current_health))
 		attack_cooldown_bar.hide()
 		animated_sprite.play("death")
 		await get_tree().create_timer(1.0).timeout
+		print("pre enemy death emit")
 		death.emit()
 		queue_free()

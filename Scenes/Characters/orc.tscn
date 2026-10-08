@@ -186,6 +186,7 @@ animations = [{
 
 [node name="Enemy" type="Node2D" unique_id=1496009578]
 script = ExtResource("1_pwg3k")
+max_health = 3
 
 [node name="AttackCooldownBar" type="ProgressBar" parent="." unique_id=1220502100]
 offset_left = 769.0
