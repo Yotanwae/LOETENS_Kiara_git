@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://fybpbvc0s3yi" path="res://Assets/Characters/Soldier/Soldier with shadows/Soldier_Hurt.png" id="3_v1ffd"]
 [ext_resource type="Texture2D" uid="uid://djs1sev1k6dud" path="res://Assets/Characters/Soldier/Soldier with shadows/Soldier_Idle.png" id="4_vh0fs"]
 [ext_resource type="Texture2D" uid="uid://bck7dho3o6o1n" path="res://Assets/Characters/Soldier/Soldier with shadows/Soldier_Walk.png" id="5_8chs8"]
+[ext_resource type="PackedScene" uid="uid://b2wpad8gvflpm" path="res://Scenes/UI/hearts_container.tscn" id="7_vh0fs"]
+[ext_resource type="PackedScene" uid="uid://cigwspn071aes" path="res://Scenes/UI/heart_ui.tscn" id="8_8chs8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31ney"]
 atlas = ExtResource("1_7stuo")
@@ -241,3 +243,18 @@ sprite_frames = SubResource("SpriteFrames_benfh")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.58946836
+
+[node name="HeartsContainer" parent="." unique_id=1557357878 instance=ExtResource("7_vh0fs")]
+offset_left = 98.0
+offset_top = 191.0
+offset_right = 148.0
+offset_bottom = 203.0
+
+[node name="HeartUI" parent="HeartsContainer" unique_id=347096226 instance=ExtResource("8_8chs8")]
+layout_mode = 2
+
+[node name="HeartUI2" parent="HeartsContainer" unique_id=639495815 instance=ExtResource("8_8chs8")]
+layout_mode = 2
+
+[node name="HeartUI3" parent="HeartsContainer" unique_id=1248485859 instance=ExtResource("8_8chs8")]
+layout_mode = 2

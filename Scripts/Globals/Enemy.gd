@@ -22,6 +22,8 @@ var is_attack_ready: bool = false
 @onready var attack_cooldown_bar: ProgressBar = $AttackCooldownBar
 @onready var animated_sprite = $AnimatedSprite2D
 
+
+
 signal inflict_damage
 signal death
 

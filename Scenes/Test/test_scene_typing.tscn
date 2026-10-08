@@ -9,8 +9,9 @@
 
 [node name="TestSceneTileSet" parent="." unique_id=1276844642 instance=ExtResource("1_y28sa")]
 
-[node name="Typing" type="Node2D" parent="." unique_id=1882548491]
+[node name="Typing" type="Node2D" parent="." unique_id=1882548491 node_paths=PackedStringArray("knight")]
 script = ExtResource("1_36060")
+knight = NodePath("../Knight")
 
 [node name="Spawner" type="Marker2D" parent="Typing" unique_id=1940777031]
 

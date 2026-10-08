@@ -9,6 +9,10 @@ var can_type: bool = true
 @onready var enemy_container: Node2D = $EnemyContainer
 @onready var spawner: Marker2D = $Spawner
 
+@export var knight : Node2D
+
+
+
 var orc_scene = preload("res://Scenes/Characters/orc.tscn")
 var demon_scene = preload("res://Scenes/Characters/demon.tscn")
 
@@ -97,5 +101,7 @@ func _on_enemy_death() -> void:
 	
 	var enemy_instance = enemy_scene.instantiate()
 	enemy_instance.death.connect(_on_enemy_death)
+	enemy_instance.inflict_damage.connect(knight._on_enemy_inflict_damage)
+	knight.is_dead.connect(enemy_instance._on_knight_is_dead)
 	enemy_container.add_child(enemy_instance)
 	enemy_instance.global_position = spawner.global_position

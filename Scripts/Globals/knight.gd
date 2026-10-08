@@ -10,7 +10,7 @@ signal is_dead
 
 func _ready() -> void:
 	animated_sprite.play("idle")
-	
+
 
 func _on_enemy_inflict_damage() -> void:
 	take_damage()
