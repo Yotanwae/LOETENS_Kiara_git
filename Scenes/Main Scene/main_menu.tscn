@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://d3ykb7sfoqp7h"]
+
+[ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="1_86xaa"]
+[ext_resource type="Script" uid="uid://kl7rtkcvhvjb" path="res://Scripts/UI/start_game_button.gd" id="2_jm40j"]
+[ext_resource type="Texture2D" uid="uid://dospxmbesu3pm" path="res://Assets/UI/Menu/buttonLong_blue.png" id="2_snshe"]
+[ext_resource type="PackedScene" uid="uid://dd4c35hpg5x2g" path="res://Scenes/Test/test_scene_typing.tscn" id="3_6mhf0"]
+[ext_resource type="Texture2D" uid="uid://cky76vw6oa2dm" path="res://Assets/UI/Menu/buttonLong_blue_pressed.png" id="3_rtljt"]
+[ext_resource type="Script" uid="uid://ulo4w3qrxduf" path="res://Scripts/UI/quit_game_button.gd" id="6_rtljt"]
+
+[sub_resource type="Gradient" id="Gradient_21g2j"]
+colors = PackedColorArray(0, 0.08627451, 0.18039216, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hwbds"]
+gradient = SubResource("Gradient_21g2j")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_benfh"]
+texture = ExtResource("2_snshe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejf0q"]
+texture = ExtResource("3_rtljt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_snshe"]
+texture = ExtResource("2_snshe")
+
+[node name="Control" type="Control" unique_id=2061854045]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="BG" type="TextureRect" parent="." unique_id=1719936223]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_hwbds")
+
+[node name="StartGameButton" type="Button" parent="." unique_id=2031422032]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39479166
+anchor_top = 0.32037038
+anchor_right = 0.64195406
+anchor_bottom = 0.45740741
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.09009846, 0.09009849, 0.09009845, 1)
+theme_override_fonts/font = ExtResource("1_86xaa")
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = SubResource("StyleBoxTexture_benfh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ejf0q")
+theme_override_styles/hover = SubResource("StyleBoxTexture_snshe")
+text = "START"
+script = ExtResource("2_jm40j")
+game_scene = ExtResource("3_6mhf0")
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitGameButton" type="Button" parent="." unique_id=1099691714]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.41979167
+anchor_top = 0.5462963
+anchor_right = 0.6168536
+anchor_bottom = 0.65555555
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.09009846, 0.09009849, 0.09009845, 1)
+theme_override_fonts/font = ExtResource("1_86xaa")
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = SubResource("StyleBoxTexture_benfh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ejf0q")
+theme_override_styles/hover = SubResource("StyleBoxTexture_snshe")
+text = "QUIT"
+icon_alignment = 1
+script = ExtResource("6_rtljt")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="StartGameButton" to="StartGameButton" method="_on_pressed"]
+[connection signal="pressed" from="QuitGameButton" to="QuitGameButton" method="_on_pressed"]
