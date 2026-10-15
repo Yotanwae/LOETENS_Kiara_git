@@ -21,7 +21,7 @@ var is_attack_ready: bool = false
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var attack_cooldown_bar: ProgressBar = $AttackCooldownBar
 @onready var animated_sprite = $AnimatedSprite2D
-
+@onready var hearts_container = $HeartsContainer
 
 
 signal inflict_damage
@@ -32,6 +32,9 @@ func _ready() -> void:
 	current_health = max_health
 	cooldown_timer.start()
 	give_new_prompt()
+	
+	hearts_container.set_max_hearts(max_health)
+	
 	
 	# setup for the progress bar 
 	attack_cooldown_bar.min_value = 0.00
@@ -118,6 +121,7 @@ func take_damage() -> void:
 	if current_health > 0:
 		current_health -= 1
 		animated_sprite.play("hurt")
+		hearts_container.remove_hearts()
 		cooldown_timer.start() #reset the timer when taking damage
 		await animated_sprite.animation_finished
 		animated_sprite.play("idle")

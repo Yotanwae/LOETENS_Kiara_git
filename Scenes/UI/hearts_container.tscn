@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b2wpad8gvflpm"]
+
+[ext_resource type="Script" uid="uid://dm700kog85pbf" path="res://Scripts/Globals/hearts_container.gd" id="1_h1sao"]
+
+[node name="HeartsContainer" type="HBoxContainer" unique_id=1557357878]
+offset_right = 50.0
+offset_bottom = 12.0
+scale = Vector2(2, 2)
+alignment = 1
+script = ExtResource("1_h1sao")

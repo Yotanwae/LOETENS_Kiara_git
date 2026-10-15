@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d1rg51qhhj1di" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Hurt.png" id="3_dm0ex"]
 [ext_resource type="Texture2D" uid="uid://cqndi66hldqla" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Idle.png" id="4_2w66l"]
 [ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="6_dm0ex"]
+[ext_resource type="PackedScene" uid="uid://b2wpad8gvflpm" path="res://Scenes/UI/hearts_container.tscn" id="7_2w66l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udadp"]
 bg_color = Color(0.014275216, 0.014275219, 0.014275208, 0.12156863)
@@ -222,5 +223,11 @@ vertical_alignment = 1
 [node name="CooldownTimer" type="Timer" parent="." unique_id=1799618238]
 wait_time = 5.0
 one_shot = true
+
+[node name="HeartsContainer" parent="." unique_id=1557357878 instance=ExtResource("7_2w66l")]
+offset_left = 759.0
+offset_top = 184.0
+offset_right = 809.0
+offset_bottom = 196.0
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
