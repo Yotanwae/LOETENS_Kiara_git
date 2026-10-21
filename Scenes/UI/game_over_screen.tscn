@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://b3jojbj6lhlad" path="res://Scripts/UI/game_over_screen.gd" id="1_21tkh"]
 [ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="1_ptf6f"]
 
-[sub_resource type="Gradient" id="Gradient_1hxt3"]
+[sub_resource type="Gradient" id="Gradient_21tkh"]
 offsets = PackedFloat32Array(0.9983221, 1)
 colors = PackedColorArray(0, 0, 0, 0.62352943, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_benfh"]
-gradient = SubResource("Gradient_1hxt3")
+gradient = SubResource("Gradient_21tkh")
 fill_from = Vector2(1, 0)
 
 [node name="GameOverScreen" type="CanvasLayer" unique_id=1294757754]

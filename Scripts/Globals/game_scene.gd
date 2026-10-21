@@ -7,6 +7,7 @@ extends Node2D
 var gameover_scene = preload("res://Scenes/UI/game_over_screen.tscn")
 
 
+
 func load_gameover_scene():
 	var gameover_instance = gameover_scene.instantiate()
 	main_scene.add_child(gameover_instance)

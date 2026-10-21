@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dxau8ftg4rbtj" path="res://Scripts/Globals/typing.gd" id="2_gdd3k"]
 [ext_resource type="PackedScene" uid="uid://chgvp5ah10t3l" path="res://Scenes/Characters/orc.tscn" id="3_iu4tg"]
 [ext_resource type="PackedScene" uid="uid://chxictadofo7w" path="res://Scenes/Characters/knight.tscn" id="4_owfok"]
+[ext_resource type="PackedScene" uid="uid://mlayb0mwofvy" path="res://Scenes/UI/pause_menu.tscn" id="6_iu4tg"]
 
 [node name="Scene_Typing" type="Node2D" unique_id=452856550]
 script = ExtResource("1_gdd3k")
@@ -22,6 +23,9 @@ knight = NodePath("../Knight")
 [node name="Enemy" parent="Typing/EnemyContainer" unique_id=1496009578 instance=ExtResource("3_iu4tg")]
 
 [node name="Knight" parent="." unique_id=1520537148 instance=ExtResource("4_owfok")]
+
+[node name="PauseMenu" parent="." unique_id=1090753961 instance=ExtResource("6_iu4tg")]
+visible = false
 
 [connection signal="succesfully_typed_word" from="Typing" to="Knight" method="_on_typing_succesfully_typed_word"]
 [connection signal="death" from="Typing/EnemyContainer/Enemy" to="Typing" method="_on_enemy_death"]
