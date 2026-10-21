@@ -1,25 +1,29 @@
 extends Node2D
 
-
+#####################################
 var active_word = null
 var current_letter_index := -1
 var is_error_cooldown: bool = false
 var can_type: bool = true
+######################################
 var kill_count : int = 0
 
+var difficulty_level : int = 1
+#######################################
 @onready var enemy_container: Node2D = $EnemyContainer
 @onready var spawner: Marker2D = $Spawner
 
+@export var difficulty_text : Label
+@export var kill_count_text : Label
+
 @export var knight : Node2D
-
-
-
+###################################
 var orc_scene = preload("res://Scenes/Characters/orc.tscn")
 var demon_scene = preload("res://Scenes/Characters/demon.tscn")
-
+###################################
 signal succesfully_typed_word
 signal increase_difficulty
-signal appearing_boss
+##################################
 
 func _ready() -> void:
 	increase_difficulty.connect(PromptList._on_increase_difficulty)
@@ -121,10 +125,14 @@ func add_to_kill_count_enemy():
 	
 	if kill_count % 5 == 0:
 		increase_difficulty.emit()
-		kill_count = 0
-		
-	print(kill_count)
-	
-	
-	
-	
+
+func update_difficulty_text():
+	difficulty_text.set_text("DIFFICULTY : " + str(difficulty_level))
+
+func update_kill_count_text():
+	kill_count_text.set_text("NUMBER OF ENEMY DEFEATED : " + str(kill_count))
+
+func _process(delta: float) -> void:
+	difficulty_level = PromptList.give_difficulty()
+	update_difficulty_text()
+	update_kill_count_text()

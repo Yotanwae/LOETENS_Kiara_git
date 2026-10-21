@@ -7,15 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://chxictadofo7w" path="res://Scenes/Characters/knight.tscn" id="4_owfok"]
 [ext_resource type="PackedScene" uid="uid://mlayb0mwofvy" path="res://Scenes/UI/pause_menu.tscn" id="6_iu4tg"]
 [ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="7_owfok"]
-[ext_resource type="Script" uid="uid://djdr41k01ypps" path="res://Scripts/UI/difficulty_level.gd" id="8_2rojn"]
 
 [node name="Scene_Typing" type="Node2D" unique_id=452856550]
 script = ExtResource("1_gdd3k")
 
 [node name="TestSceneTileSet" parent="." unique_id=1276844642 instance=ExtResource("1_dx2ew")]
 
-[node name="Typing" type="Node2D" parent="." unique_id=1882548491 node_paths=PackedStringArray("knight")]
+[node name="Typing" type="Node2D" parent="." unique_id=1882548491 node_paths=PackedStringArray("difficulty_text", "kill_count_text", "knight")]
 script = ExtResource("2_gdd3k")
+difficulty_text = NodePath("../DifficultyLevel")
+kill_count_text = NodePath("../KillCount")
 knight = NodePath("../Knight")
 
 [node name="Spawner" type="Marker2D" parent="Typing" unique_id=1940777031]
@@ -35,7 +36,14 @@ offset_bottom = 60.0
 theme_override_fonts/font = ExtResource("7_owfok")
 theme_override_font_sizes/font_size = 24
 text = "Difficulty Level : 1"
-script = ExtResource("8_2rojn")
+
+[node name="KillCount" type="Label" parent="." unique_id=1802994319]
+offset_top = 501.0
+offset_right = 383.0
+offset_bottom = 561.0
+theme_override_fonts/font = ExtResource("7_owfok")
+theme_override_font_sizes/font_size = 24
+text = "NUMBER OF ENEMY DEFEATED : 0"
 
 [connection signal="succesfully_typed_word" from="Typing" to="Knight" method="_on_typing_succesfully_typed_word"]
 [connection signal="death" from="Typing/EnemyContainer/Enemy" to="Typing" method="_on_enemy_death"]

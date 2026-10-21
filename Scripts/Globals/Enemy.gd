@@ -138,3 +138,5 @@ func take_damage() -> void:
 		await get_tree().create_timer(1.0).timeout
 		death.emit()
 		queue_free()
+
+########################################
