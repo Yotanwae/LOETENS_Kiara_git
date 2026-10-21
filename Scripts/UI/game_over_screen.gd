@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var menu_scene: PackedScene
+signal back_to_menu
 
 
 func reload_scene():
@@ -11,5 +11,6 @@ func _on_restart_pressed() -> void:
 	reload_scene()
 
 
-func _on_back_to_menue_pressed() -> void:
-	get_tree().change_scene_to_packed(menu_scene)
+
+func _on_back_to_menu_pressed() -> void:
+	back_to_menu.emit()

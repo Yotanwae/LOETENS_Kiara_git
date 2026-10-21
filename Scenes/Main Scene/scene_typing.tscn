@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dd4c35hpg5x2g"]
 
 [ext_resource type="PackedScene" uid="uid://drjajedtoppx7" path="res://Scenes/Test/test_scene_tileset.tscn" id="1_dx2ew"]
+[ext_resource type="Script" uid="uid://b3qrxfkjd4ikt" path="res://Scripts/Globals/game_scene.gd" id="1_gdd3k"]
 [ext_resource type="Script" uid="uid://dxau8ftg4rbtj" path="res://Scripts/Globals/typing.gd" id="2_gdd3k"]
 [ext_resource type="PackedScene" uid="uid://chgvp5ah10t3l" path="res://Scenes/Characters/orc.tscn" id="3_iu4tg"]
 [ext_resource type="PackedScene" uid="uid://chxictadofo7w" path="res://Scenes/Characters/knight.tscn" id="4_owfok"]
 
 [node name="Scene_Typing" type="Node2D" unique_id=452856550]
+script = ExtResource("1_gdd3k")
 
 [node name="TestSceneTileSet" parent="." unique_id=1276844642 instance=ExtResource("1_dx2ew")]
 
@@ -24,5 +26,6 @@ knight = NodePath("../Knight")
 [connection signal="succesfully_typed_word" from="Typing" to="Knight" method="_on_typing_succesfully_typed_word"]
 [connection signal="death" from="Typing/EnemyContainer/Enemy" to="Typing" method="_on_enemy_death"]
 [connection signal="inflict_damage" from="Typing/EnemyContainer/Enemy" to="Knight" method="_on_enemy_inflict_damage"]
+[connection signal="is_dead" from="Knight" to="." method="_on_knight_is_dead"]
 [connection signal="is_dead" from="Knight" to="Typing" method="_on_knight_is_dead"]
 [connection signal="is_dead" from="Knight" to="Typing/EnemyContainer/Enemy" method="_on_knight_is_dead"]

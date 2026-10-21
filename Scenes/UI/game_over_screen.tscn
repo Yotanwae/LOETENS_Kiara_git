@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b3jojbj6lhlad" path="res://Scripts/UI/game_over_screen.gd" id="1_21tkh"]
 [ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="1_ptf6f"]
-[ext_resource type="PackedScene" uid="uid://d3ykb7sfoqp7h" path="res://Scenes/Main Scene/main_menu.tscn" id="2_mwsax"]
 
 [sub_resource type="Gradient" id="Gradient_1hxt3"]
 offsets = PackedFloat32Array(0.9983221, 1)
@@ -14,7 +13,6 @@ fill_from = Vector2(1, 0)
 
 [node name="GameOverScreen" type="CanvasLayer" unique_id=1294757754]
 script = ExtResource("1_21tkh")
-menu_scene = ExtResource("2_mwsax")
 
 [node name="Control" type="Control" parent="." unique_id=62804634]
 layout_mode = 3
@@ -92,7 +90,7 @@ theme_override_font_sizes/font_size = 32
 text = "RESTART?"
 metadata/_edit_use_anchors_ = true
 
-[node name="BackToMenue" type="Button" parent="Control" unique_id=797418876]
+[node name="BackToMenu" type="Button" parent="Control" unique_id=797418876]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.38316667
@@ -110,4 +108,4 @@ text = "BACK TO MENU"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Control/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="Control/BackToMenue" to="." method="_on_back_to_menue_pressed"]
+[connection signal="pressed" from="Control/BackToMenu" to="." method="_on_back_to_menu_pressed"]
