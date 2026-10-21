@@ -91,12 +91,12 @@ func _on_knight_is_dead() -> void:
 
 
 func _on_enemy_death() -> void:
-	var randomize = randi_range(0,1)
+	var randomized = randi_range(0,1)
 	var enemy_scene = orc_scene
 	
-	if randomize == 0:
+	if randomized == 0:
 		enemy_scene = orc_scene
-	if randomize == 1:
+	if randomized == 1:
 		enemy_scene = demon_scene
 	
 	var enemy_instance = enemy_scene.instantiate()

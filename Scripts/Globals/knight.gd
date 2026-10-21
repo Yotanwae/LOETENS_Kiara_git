@@ -8,6 +8,10 @@ var current_health := max_health
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+var gameover_scene = preload("res://Scenes/UI/game_over_screen.tscn")
+
+@onready var main_scene: Node2D = $".."
+
 signal is_dead
 
 func _ready() -> void:
@@ -35,8 +39,7 @@ func death():
 	is_dead.emit()
 	animated_sprite.play("death")
 	await animated_sprite.animation_finished
-	await get_tree().create_timer(3.0).timeout
-	get_tree().reload_current_scene()
+	load_gameover_scene()
 
 func attack_animation():
 	animated_sprite.play("attack")
@@ -46,3 +49,9 @@ func attack_animation():
 
 func _on_typing_succesfully_typed_word() -> void:
 	attack_animation()
+
+
+func load_gameover_scene():
+	var gameover_instance = gameover_scene.instantiate()
+	main_scene.add_child(gameover_instance)
+	

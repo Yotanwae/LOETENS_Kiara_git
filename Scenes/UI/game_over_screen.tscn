@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dpqruxroifqqb"]
+
+[ext_resource type="Script" uid="uid://b3jojbj6lhlad" path="res://Scripts/UI/game_over_screen.gd" id="1_21tkh"]
+[ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="1_ptf6f"]
+[ext_resource type="PackedScene" uid="uid://d3ykb7sfoqp7h" path="res://Scenes/Main Scene/main_menu.tscn" id="2_mwsax"]
+
+[sub_resource type="Gradient" id="Gradient_1hxt3"]
+offsets = PackedFloat32Array(0.9983221, 1)
+colors = PackedColorArray(0, 0, 0, 0.62352943, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_benfh"]
+gradient = SubResource("Gradient_1hxt3")
+fill_from = Vector2(1, 0)
+
+[node name="GameOverScreen" type="CanvasLayer" unique_id=1294757754]
+script = ExtResource("1_21tkh")
+menu_scene = ExtResource("2_mwsax")
+
+[node name="Control" type="Control" parent="." unique_id=62804634]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=443788501]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_benfh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/TextureRect" unique_id=358812604]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 0.24100001
+anchor_right = 1.0
+anchor_bottom = 0.365
+offset_left = 0.07999992
+offset_top = -49.14
+offset_right = 2.0
+offset_bottom = 22.899994
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.24313726, 0.13725491, 1)
+theme_override_fonts/normal_font = ExtResource("1_ptf6f")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[tornado radius=3 freq=4 connected=0]GAMEOVER[/tornado]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/TextureRect" unique_id=1580799771]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 0.24100001
+anchor_right = 1.0
+anchor_bottom = 0.365
+offset_left = 1.0799999
+offset_top = -49.14
+offset_right = 3.0
+offset_bottom = 22.899994
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.96862745, 0.14509805, 0, 0.46666667)
+theme_override_fonts/normal_font = ExtResource("1_ptf6f")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[tornado radius=4 freq=3 connected=0]GAMEOVER[/tornado]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="Control" unique_id=989643787]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.354
+anchor_top = 0.45185184
+anchor_right = 0.64375
+anchor_bottom = 0.65392596
+offset_left = 0.16000366
+offset_top = -4.0
+offset_bottom = -0.120025635
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ptf6f")
+theme_override_font_sizes/font_size = 32
+text = "RESTART?"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackToMenue" type="Button" parent="Control" unique_id=797418876]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38316667
+anchor_top = 0.7037037
+anchor_right = 0.62083334
+anchor_bottom = 0.8446667
+offset_left = 0.16000366
+offset_top = -4.0
+offset_bottom = -0.120025635
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ptf6f")
+theme_override_font_sizes/font_size = 24
+text = "BACK TO MENU"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Control/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/BackToMenue" to="." method="_on_back_to_menue_pressed"]

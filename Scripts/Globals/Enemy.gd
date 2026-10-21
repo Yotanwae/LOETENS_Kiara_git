@@ -106,6 +106,9 @@ func _on_cooldown_timer_timeout() -> void:
 #to stop the timer when the player died
 func _on_knight_is_dead() -> void:
 	cooldown_timer.paused = true
+	attack_cooldown_bar.hide()
+	prompt.hide()
+	hearts_container.hide()
 
 
 func attack():
