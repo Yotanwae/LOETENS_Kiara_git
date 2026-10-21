@@ -124,3 +124,11 @@ func give_prompt()-> String:
 	
 	
 	return possible_words.pick_random().to_upper()
+
+func give_difficulty()-> int:
+	return difficulty_word
+
+func _on_increase_difficulty():
+	difficulty_word += 1
+	if difficulty_word > 3:
+		difficulty_word = 3

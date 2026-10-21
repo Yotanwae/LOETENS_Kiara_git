@@ -5,6 +5,7 @@ var active_word = null
 var current_letter_index := -1
 var is_error_cooldown: bool = false
 var can_type: bool = true
+var kill_count : int = 0
 
 @onready var enemy_container: Node2D = $EnemyContainer
 @onready var spawner: Marker2D = $Spawner
@@ -17,6 +18,11 @@ var orc_scene = preload("res://Scenes/Characters/orc.tscn")
 var demon_scene = preload("res://Scenes/Characters/demon.tscn")
 
 signal succesfully_typed_word
+signal increase_difficulty
+signal appearing_boss
+
+func _ready() -> void:
+	increase_difficulty.connect(PromptList._on_increase_difficulty)
 
 
 func new_active_word(typed_character : String):
@@ -48,7 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if key_typed.strip_edges().is_empty():
 			return
 		
-		print(key_typed)
+		#print(key_typed)
 		
 		
 		if active_word == null:
@@ -58,7 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			var next_character = prompt.substr(current_letter_index, 1)
 			
 			if key_typed == next_character:
-				print("success")
+				#print("success")
 				current_letter_index += 1
 				active_word.set_next_character(current_letter_index) # color with bbcode
 				
@@ -76,7 +82,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			##### when miss input #####
 			if key_typed != next_character:
-				print("miss typed")
+				#print("miss typed")
 				active_word.miss_input_shake()
 				is_error_cooldown = true
 				await get_tree().create_timer(0.15).timeout
@@ -91,6 +97,9 @@ func _on_knight_is_dead() -> void:
 
 
 func _on_enemy_death() -> void:
+	
+	add_to_kill_count_enemy()
+	
 	var randomized = randi_range(0,1)
 	var enemy_scene = orc_scene
 	
@@ -105,3 +114,17 @@ func _on_enemy_death() -> void:
 	knight.is_dead.connect(enemy_instance._on_knight_is_dead)
 	enemy_container.add_child(enemy_instance)
 	enemy_instance.global_position = spawner.global_position
+
+
+func add_to_kill_count_enemy():
+	kill_count += 1
+	
+	if kill_count % 5 == 0:
+		increase_difficulty.emit()
+		kill_count = 0
+		
+	print(kill_count)
+	
+	
+	
+	
