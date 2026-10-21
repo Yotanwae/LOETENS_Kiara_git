@@ -13,8 +13,8 @@ var difficulty_level : int = 1
 @onready var enemy_container: Node2D = $EnemyContainer
 @onready var spawner: Marker2D = $Spawner
 
-@export var difficulty_text : Label
-@export var kill_count_text : Label
+@export var difficulty_text: RichTextLabel
+@export var kill_count_text: RichTextLabel
 
 @export var knight : Node2D
 ###################################
@@ -127,10 +127,11 @@ func add_to_kill_count_enemy():
 		increase_difficulty.emit()
 
 func update_difficulty_text():
-	difficulty_text.set_text("DIFFICULTY : " + str(difficulty_level))
+	difficulty_text.set_text("[font gl=3]DIFFICULTY : " + str(difficulty_level))
 
 func update_kill_count_text():
-	kill_count_text.set_text("NUMBER OF ENEMY DEFEATED : " + str(kill_count))
+	kill_count_text.set_text("[font gl=3]NUMBER OF ENEMY DEFEATED : " + str(kill_count))
+
 
 func _process(delta: float) -> void:
 	difficulty_level = PromptList.give_difficulty()
