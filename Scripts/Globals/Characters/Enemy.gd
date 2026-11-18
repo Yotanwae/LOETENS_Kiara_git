@@ -1,9 +1,6 @@
-extends Node2D
+extends Character
 
-######### Enemy Statistics ###########
-@export var max_health : int
-var current_health: int
-
+######### Attack Cooldown ###########
 var is_attack_ready: bool = false
 ######################################
 
@@ -20,21 +17,18 @@ var is_attack_ready: bool = false
 
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var attack_cooldown_bar: ProgressBar = $AttackCooldownBar
-@onready var animated_sprite = $AnimatedSprite2D
-@onready var hearts_container = $HeartsContainer
 
 
 signal inflict_damage
-signal death
-
 
 func _ready() -> void:
-	current_health = max_health
-	cooldown_timer.start()
+	
+	super._ready()
+	
 	give_new_prompt()
 	
-	hearts_container.set_max_hearts(max_health)
 	
+	cooldown_timer.start()
 	
 	# setup for the progress bar 
 	attack_cooldown_bar.min_value = 0.00
@@ -112,31 +106,22 @@ func _on_knight_is_dead() -> void:
 
 
 func attack():
-	animated_sprite.play("attack")
-	await animated_sprite.animation_finished
+	play_attack_animation()
+	await super.play_attack_animation()
 	cooldown_timer.start()
 	inflict_damage.emit()
-	animated_sprite.play("idle")
+	
 ###################################
 
 ############ Health system ###################
-func take_damage() -> void:
-	if current_health > 0:
-		current_health -= 1
-		animated_sprite.play("hurt")
-		hearts_container.remove_hearts()
-		cooldown_timer.start() #reset the timer when taking damage
-		await animated_sprite.animation_finished
-		animated_sprite.play("idle")
-		if current_health > 0: 
-			give_new_prompt()
+func on_take_damage():
+	cooldown_timer.start() #reset the timer when taking damage
 
+func on_survived():
+	give_new_prompt()
 
-	if current_health == 0:
-		attack_cooldown_bar.hide()
-		animated_sprite.play("death")
-		await get_tree().create_timer(1.0).timeout
-		death.emit()
-		queue_free()
-
+func death():
+	attack_cooldown_bar.hide()
+	await super.death()
+	queue_free()
 ########################################

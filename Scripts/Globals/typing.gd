@@ -27,7 +27,7 @@ signal increase_difficulty
 
 func _ready() -> void:
 	increase_difficulty.connect(PromptList._on_increase_difficulty)
-
+	spawn_new_enemy()
 
 func new_active_word(typed_character : String):
 	for enemy in enemy_container.get_children():
@@ -80,13 +80,12 @@ func _unhandled_input(event: InputEvent) -> void:
 					
 					
 					await get_tree().create_timer(0.4).timeout
-					active_word.take_damage() #erase the current enemy ###### temporary as it will just cause damage later on
+					active_word.take_damage() 
 					active_word = null 
 			
 			
 			##### when miss input #####
 			if key_typed != next_character:
-				#print("miss typed")
 				active_word.miss_input_shake()
 				is_error_cooldown = true
 				await get_tree().create_timer(0.15).timeout
@@ -100,10 +99,13 @@ func _on_knight_is_dead() -> void:
 	can_type = false
 
 
-func _on_enemy_death() -> void:
-	
+func _on_enemy_is_dead() -> void:
+	print("test")
 	add_to_kill_count_enemy()
-	
+	spawn_new_enemy()
+
+
+func spawn_new_enemy():
 	var randomized = randi_range(0,1)
 	var enemy_scene = orc_scene
 	
@@ -113,7 +115,7 @@ func _on_enemy_death() -> void:
 		enemy_scene = demon_scene
 	
 	var enemy_instance = enemy_scene.instantiate()
-	enemy_instance.death.connect(_on_enemy_death)
+	enemy_instance.is_dead.connect(_on_enemy_is_dead)
 	enemy_instance.inflict_damage.connect(knight._on_enemy_inflict_damage)
 	knight.is_dead.connect(enemy_instance._on_knight_is_dead)
 	enemy_container.add_child(enemy_instance)
