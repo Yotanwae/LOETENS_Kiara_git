@@ -1,6 +1,7 @@
 extends Node
 
 var difficulty_word: int = 1
+enum DIFFICULTY{EASY=1, MEDIUM, HARD}
 var min_length: int = 1
 var max_length: int = 20 
 
@@ -110,13 +111,13 @@ func is_in_range(word:String)-> bool:
 
 func give_prompt()-> String:
 	####################
-	if difficulty_word == 1:
+	if difficulty_word == DIFFICULTY.EASY:
 		min_length = 1
 		max_length = 5
-	if difficulty_word == 2:
+	if difficulty_word == DIFFICULTY.MEDIUM:
 		min_length = 5
 		max_length = 7
-	if difficulty_word == 3:
+	if difficulty_word == DIFFICULTY.HARD:
 		min_length = 6
 		max_length = 20
 	####################
