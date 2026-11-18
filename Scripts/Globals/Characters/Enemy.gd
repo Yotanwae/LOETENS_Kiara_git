@@ -4,6 +4,13 @@ extends Character
 var is_attack_ready: bool = false
 ######################################
 
+######### Movement on spawn ###########
+var is_moving: bool = true
+@export var speed = 170
+@export var target = Vector2(0,0)
+@onready var enemy: Character = $"."
+######################################
+
 ######### Colors for Ui #########
 @export var green : Color = Color("#89fe6d")
 @export var red : Color = Color("#ff3e23")
@@ -22,11 +29,31 @@ var is_attack_ready: bool = false
 signal inflict_damage
 
 func _ready() -> void:
+	animated_sprite.play("walk")
+	attack_cooldown_bar.hide()
+
+func move_on_spawn(delta: float) -> void:
+	if not is_moving:
+		return
 	
+	enemy.position = enemy.position.move_toward(target, speed * delta)
+	
+	
+	if enemy.position == target: 
+		is_moving = false
+		is_arrived()
+	
+
+func _process(delta: float) -> void:
+	move_on_spawn(delta)
+	cooldown()
+
+func is_arrived():
 	super._ready()
 	
 	give_new_prompt()
 	
+	attack_cooldown_bar.show()
 	
 	cooldown_timer.start()
 	
@@ -83,14 +110,14 @@ func set_bbcode_basics_tags(base_string: String):
 #############################################################
 
 ######## Attack system ###################
-func _process(delta: float) -> void:
+func cooldown():
 	#fill the progress bar with time left
 	attack_cooldown_bar.value = cooldown_timer.wait_time - cooldown_timer.time_left
 	
 	if is_attack_ready == true:
 		is_attack_ready = false
 		attack()
-		print("attacked")
+		
 		
 		
 

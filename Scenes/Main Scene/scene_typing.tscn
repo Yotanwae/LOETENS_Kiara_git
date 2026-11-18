@@ -19,6 +19,7 @@ kill_count_text = NodePath("../KillCount")
 knight = NodePath("../Knight")
 
 [node name="Spawner" type="Marker2D" parent="Typing" unique_id=1940777031]
+position = Vector2(300, 0)
 
 [node name="EnemyContainer" type="Node2D" parent="Typing" unique_id=708849694]
 

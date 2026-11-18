@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d1rg51qhhj1di" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Hurt.png" id="3_dm0ex"]
 [ext_resource type="Texture2D" uid="uid://cqndi66hldqla" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Idle.png" id="4_2w66l"]
 [ext_resource type="FontFile" uid="uid://c3bny8rxx23yy" path="res://Assets/Fonts/atwriter.ttf" id="6_dm0ex"]
+[ext_resource type="Texture2D" uid="uid://7r2esulqmdnv" path="res://Assets/Characters/Orc/Orc with shadows/Orc_Walk.png" id="6_rw6wq"]
 [ext_resource type="PackedScene" uid="uid://b2wpad8gvflpm" path="res://Scenes/UI/hearts_container.tscn" id="7_2w66l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udadp"]
@@ -102,6 +103,38 @@ region = Rect2(400, 0, 100, 100)
 atlas = ExtResource("4_2w66l")
 region = Rect2(500, 0, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tasdo"]
+atlas = ExtResource("6_rw6wq")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxyqu"]
+atlas = ExtResource("6_rw6wq")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rgqk"]
+atlas = ExtResource("6_rw6wq")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psxd8"]
+atlas = ExtResource("6_rw6wq")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip6dh"]
+atlas = ExtResource("6_rw6wq")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v88sa"]
+atlas = ExtResource("6_rw6wq")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixn2w"]
+atlas = ExtResource("6_rw6wq")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40ifa"]
+atlas = ExtResource("6_rw6wq")
+region = Rect2(700, 0, 100, 100)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bic1j"]
 animations = [{
 "frames": [{
@@ -183,9 +216,39 @@ animations = [{
 "loop": 1,
 "name": &"idle",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tasdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxyqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rgqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psxd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip6dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v88sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixn2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40ifa")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 6.0
 }]
 
 [node name="Enemy" type="Node2D" unique_id=1496009578]
+position = Vector2(300, -2)
 script = ExtResource("1_pwg3k")
 max_health = 3
 
@@ -206,7 +269,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_bic1j")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.02513689
+frame_progress = 0.757857
 flip_h = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1369352667]

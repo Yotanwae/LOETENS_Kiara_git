@@ -58,7 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if key_typed.strip_edges().is_empty():
 			return
 		
-		#print(key_typed)
+		
 		
 		
 		if active_word == null:
@@ -68,7 +68,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			var next_character = prompt.substr(current_letter_index, 1)
 			
 			if key_typed == next_character:
-				#print("success")
 				current_letter_index += 1
 				active_word.set_next_character(current_letter_index) # color with bbcode
 				
@@ -100,7 +99,6 @@ func _on_knight_is_dead() -> void:
 
 
 func _on_enemy_is_dead() -> void:
-	print("test")
 	add_to_kill_count_enemy()
 	spawn_new_enemy()
 
